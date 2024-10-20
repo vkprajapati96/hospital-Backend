@@ -5,7 +5,8 @@ import jwt, { decode } from 'jsonwebtoken';
 
 
 export const isAdminAuthenticated = catchAsyncError(async(req,res,next)=>{
- const token = req.cookies.adminToken;
+//  const token = req.cookies.adminToken;
+ const token = req.headers['authorization']
  console.log(token);
  
  if (!token) {
