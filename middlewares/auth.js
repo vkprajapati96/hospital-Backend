@@ -7,7 +7,7 @@ import jwt, { decode } from 'jsonwebtoken';
 export const isAdminAuthenticated = catchAsyncError(async(req,res,next)=>{
 //  const token = req.cookies.adminToken;
  const token = req.headers['authorization']
- console.log(token);
+ 
  
  if (!token) {
     return next(new ErrorHandler("Admin Not Authenticated!",400));
@@ -29,7 +29,9 @@ export const isAdminAuthenticated = catchAsyncError(async(req,res,next)=>{
 
 
 export const isPatientAuthenticated = catchAsyncError(async(req,res,next)=>{
-    const token = req.cookies.patientToken;
+   //  const token = req.cookies.patientToken;
+   const token = req.headers['authorization']
+ 
     if (!token) {
        return next(new ErrorHandler("patient Not Authenticated!",400));
     }
