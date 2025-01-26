@@ -14,11 +14,10 @@ config({ path: "./.env" });
 
 app.use(
   cors({
-    origin: ["http://localhost:5173","http://localhost:5174"], // React app का origin
+    origin: [process.env.FRONTEND_URL,process.env.DASHBOARD_URL], // React app का origin
     credentials: true, // Allow credentials (cookies, etc.)
   })
 );
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
