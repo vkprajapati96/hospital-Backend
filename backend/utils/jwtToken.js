@@ -10,7 +10,7 @@ export const generateToken = (user, message, statusCode, res) => {
       expires: new Date(
         Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
       ),
-      httpOnly: true, // Prevent client-side access
+      httpOnly: false, // Prevent client-side access
       secure: isProduction, // Only set in HTTPS
       sameSite: isProduction ? 'None' : 'Lax', // 'None' for cross-origin
     })
