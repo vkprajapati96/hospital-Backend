@@ -211,10 +211,12 @@ export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
 // Logout function for frontend patient
 export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
   res
-    .status(201)
+    .status(200) // Use status 200 for successful logout
     .cookie("patientToken", "", {
-      httpOnly: true,
-      expires: new Date(Date.now()),
+      httpOnly: true, // Match attributes used when setting the cookie
+      secure: process.env.NODE_ENV === "production", // Use secure in production
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      expires: new Date(0), // Set the expiry to a past date
     })
     .json({
       success: true,
